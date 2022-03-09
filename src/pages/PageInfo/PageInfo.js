@@ -25,14 +25,17 @@ export default function BookInfo() {
   const params = useParams();
   const location = useLocation();
 
-  const { category } = params;
+  const { category } = params.bookName;
 
-  const { news, loading, error } = useSelector((state) => state.news);
+  const { books, loading, error } = useSelector((state) => state.books);
+  const [data, setData] = useState([]);
 
-  useEffect(() => {
-    GetDataBook(category);
-  }, [category]);
+  useEffect(async () => {
+    const obj = await GetDataBook(params.bookName);
+    setData(obj);
+  }, [params.bookName]);
 
+  console.log("books data", data);
   const changeCategory = (categoryName) => {
     // setCategory(categoryName);
     navigate(`/category/${categoryName}`);
@@ -40,7 +43,15 @@ export default function BookInfo() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
-      Galimjan
+      {data.success ? (
+        <Typography color="success" variant="h1">
+          Ishlayapti
+        </Typography>
+      ) : (
+        <Typography color="error" variant="h1">
+          Ishlamayapti
+        </Typography>
+      )}
     </Container>
   );
 }
