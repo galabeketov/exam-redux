@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import BookInfo from "./pages/PageInfo/PageInfo";
+import Footer from "./components/Footer/Footer";
 
 const outerTheme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/" element={<Main />} />
             <Route path="/category/:bookName" element={<BookInfo />} />
           </Routes>
+          <Footer />
         </ThemeProvider>
       </BrowserRouter>
     </Provider>

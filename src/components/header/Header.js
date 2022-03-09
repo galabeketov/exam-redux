@@ -53,7 +53,9 @@ export default function Header() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="sticky">
+        <AppBar
+          sx={{ position: "fixed", top: "0px", left: "0px", right: "0px" }}
+        >
           <Toolbar>
             <Typography
               variant="h6"
