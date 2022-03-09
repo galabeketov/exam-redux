@@ -17,12 +17,14 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
+import Loader from "../../components/Loader/Loader";
 
 export default function Main() {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState("hardcover-fiction");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [page, setPage] = useState(0);
 
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ export default function Main() {
   }, [category]);
 
   const _ = require("lodash");
-  const data2 = _.chunk(data, 12);
+  const data2 = data ? _.chunk(data, 12) : <Loader />;
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -66,9 +68,9 @@ export default function Main() {
           </Typography>
           <Grid container spacing={3}>
             {loading ? (
-              <Typography>loading...</Typography>
-            ) : (
-              data.map((item, index) => (
+              <Loader />
+            ) : data2[page] ? (
+              data2[page].map((item, index) => (
                 <Grid md={4} lg={3} sx={{ px: 1 }} key={index}>
                   <Card
                     sx={{
@@ -107,6 +109,8 @@ export default function Main() {
                   </Card>
                 </Grid>
               ))
+            ) : (
+              <Loader />
             )}
           </Grid>
         </Box>
@@ -119,10 +123,10 @@ export default function Main() {
           }}
         >
           <Pagination
-            count={data2.length}
+            count={data2.length - 1}
             variant="outlined"
             align="center"
-            onChange={(e, p) => console.log(p)}
+            onChange={(e, p) => setPage(p)}
           />
         </Stack>
       </Container>

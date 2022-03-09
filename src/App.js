@@ -13,8 +13,8 @@ const outerTheme = createTheme({
     primary: {
       main: "#fff",
     },
-    white: {
-      main: "#fff",
+    blue: {
+      main: "#14668C",
     },
     secondary: {
       main: "#FFCE31",

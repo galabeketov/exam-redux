@@ -78,7 +78,7 @@ export default function Header() {
       <Box
         sx={{
           flexGrow: 1,
-          height: "80vh",
+          height: "92vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -89,13 +89,18 @@ export default function Header() {
           src="bg.png"
           width={"100%"}
           height={"100%"}
-          sx={{ objectFit: "cover", position: "absolute", zIndex: -10 }}
+          sx={{
+            objectFit: "cover",
+            position: "absolute",
+            zIndex: -10,
+            background: "rgba(10,10,10,0.3)",
+          }}
         ></Box>
         <Typography
           variant="h1"
           color={"whitesmoke"}
           sx={{
-            textShadow: "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;",
+            textShadow: "0px 0 10px black",
             fontSize: "100px",
             textAlign: "center",
           }}
